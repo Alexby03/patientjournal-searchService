@@ -2,7 +2,7 @@ package data.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import core.enums.ConditionType;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "conditions")
-public class Condition extends PanacheEntityBase {
+public class Condition extends PanacheEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -1,6 +1,6 @@
 package data.entities;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "observations")
-public class Observation extends PanacheEntityBase {
+public class Observation extends PanacheEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

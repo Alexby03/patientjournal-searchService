@@ -1,7 +1,8 @@
 package data.repositories;
 
 import data.entities.Practitioner;
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.hibernate.reactive.panache.PanacheRepository;
+import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.hibernate.Hibernate;
 
@@ -9,13 +10,13 @@ import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
-public class PractitionerRepository implements PanacheRepositoryBase<Practitioner, UUID> {
+public class PractitionerRepository implements PanacheRepository<Practitioner> {
 
-    public List<Practitioner> findAllPractitioners(int pageIndex, int pageSize) {
+    public Uni<List<Practitioner>> findAllPractitioners(int pageIndex, int pageSize) {
         return findAll().page(pageIndex, pageSize).list();
     }
 
-    public List<Practitioner> findAllPractitionersWithRelations(int pageIndex, int pageSize) {
+    public UniList<Practitioner> findAllPractitionersWithRelations(int pageIndex, int pageSize) {
         List<Practitioner> practitioners = findAll().page(pageIndex, pageSize).list();
         practitioners.forEach(p -> {
             Hibernate.initialize(p.getConditions());
