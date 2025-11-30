@@ -99,12 +99,12 @@ public class SearchController {
     }
 
     /**
-     * Get all patients by associated with a practitioner
+     * Get practitioner by email
      */
     @GET
     @WithTransaction
     @Path("/search/practitioner/email/{email}")
-    public Uni<PractitionerDTO> getPatientsByPractitioner(@PathParam("email") String email) {
+    public Uni<PractitionerDTO> getPractitionerByEmail(@PathParam("email") String email) {
         return patientService.getPractitionerByEmail(email);
     }
 }
