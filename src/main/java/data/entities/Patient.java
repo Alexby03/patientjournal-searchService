@@ -4,22 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("PATIENT")
 public class Patient extends User {
     @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Condition> conditions = new ArrayList<>();
+    private Set<Condition> conditions = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Encounter> encounters = new ArrayList<>();
+    private Set<Encounter> encounters = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Observation> observations = new ArrayList<>();
+    private Set<Observation> observations = new HashSet<>();
 
     public Patient() {}
 
@@ -71,15 +73,15 @@ public class Patient extends User {
         }
     }
 
-    public List<Condition> getConditions() {
+    public Set<Condition> getConditions() {
         return conditions;
     }
 
-    public List<Encounter> getEncounters() {
+    public Set<Encounter> getEncounters() {
         return encounters;
     }
 
-    public List<Observation> getObservations() {
+    public Set<Observation> getObservations() {
         return observations;
     }
 

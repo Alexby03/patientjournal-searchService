@@ -2,6 +2,7 @@ package data.entities;
 
 import core.enums.UserType;
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -10,7 +11,7 @@ import java.util.UUID;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_role")
-public abstract class User extends PanacheEntity {
+public abstract class User extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_id", nullable = false)
